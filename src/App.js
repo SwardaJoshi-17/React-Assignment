@@ -29,7 +29,15 @@ useEffect(()=>{
   return (alert("Timeout Completed!"))
   
   
-}               
+}      
+if (seconds<0 || minutes<0 || hours<0)
+{
+    timerseconds(0)
+    timerminutes(0)
+    timerhours(0)
+    return (alert("Wrong Input!"))
+}
+
 timer=setInterval(()=>{            //call function repeatedly, actions after rendering
 timerseconds(seconds-1) 
 
@@ -52,15 +60,6 @@ if (seconds===0 && minutes>0)
   timerseconds(59)
   timerminutes(minutes-1)
 }
-
-if (seconds<0 || minutes<0 || hours<0)
-{
-    timerseconds(0)
-    timerminutes(0)
-    timerhours(0)
-    return (alert("Wrong Input!"))
-}
-
 
  
 },1000)
@@ -107,7 +106,7 @@ const stop =()=>{
             <input onChange={(e) => {timerseconds(e.target.value);}} placeholder='Enter Seconds'/>
             </div>
            
-      <h1>{hours} : {minutes} : {seconds}</h1>
+      <h1>{hours<10 ? "0"+ hours:hours} : {minutes<10? "0"+ minutes:minutes} : {seconds<10? "0" +seconds:seconds}</h1>
     
       <div className="Button">
       <button className='reset' onClick={reset}>Reset</button>
